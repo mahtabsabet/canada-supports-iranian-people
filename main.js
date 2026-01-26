@@ -403,37 +403,21 @@ ${userData.city}, ${userData.province} ${userData.postalCode}`;
     }
 
     /**
-     * Generate Gmail compose URL
-     * Uses Gmail app scheme on mobile, web URL on desktop
+     * Generate Gmail compose URL (desktop only)
      */
     function generateGmailLink(toEmail, subject, body, cc) {
-        if (isMobile()) {
-            // Gmail app URL scheme (works on iOS and Android)
-            const params = new URLSearchParams();
-            params.set('to', toEmail);
-            if (cc) {
-                params.set('cc', cc);
-            }
-            params.set('subject', subject);
-            params.set('body', body);
-
-            const queryString = params.toString().replace(/\+/g, '%20');
-            return `googlegmail://co?${queryString}`;
-        } else {
-            // Desktop: use Gmail web compose
-            const params = new URLSearchParams();
-            params.set('view', 'cm');
-            params.set('fs', '1');
-            params.set('to', toEmail);
-            if (cc) {
-                params.set('cc', cc);
-            }
-            params.set('su', subject);
-            params.set('body', body);
-
-            const queryString = params.toString().replace(/\+/g, '%20');
-            return `https://mail.google.com/mail/?${queryString}`;
+        const params = new URLSearchParams();
+        params.set('view', 'cm');
+        params.set('fs', '1');
+        params.set('to', toEmail);
+        if (cc) {
+            params.set('cc', cc);
         }
+        params.set('su', subject);
+        params.set('body', body);
+
+        const queryString = params.toString().replace(/\+/g, '%20');
+        return `https://mail.google.com/mail/?${queryString}`;
     }
 
     // ============================================
@@ -642,6 +626,11 @@ ${userData.city}, ${userData.province} ${userData.postalCode}`;
     // ============================================
 
     function init() {
+        // Hide Gmail button on mobile (mailto works better with app chooser)
+        if (isMobile()) {
+            openGmailBtn.style.display = 'none';
+        }
+
         // Form submission
         form.addEventListener('submit', handleFormSubmit);
 
