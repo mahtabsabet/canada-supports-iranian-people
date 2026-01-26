@@ -367,6 +367,7 @@ ${userData.city}, ${userData.province} ${userData.postalCode}`;
 
     /**
      * Generate mailto link
+     * Note: mailto links need %20 for spaces, not + (which URLSearchParams uses)
      */
     function generateMailtoLink(toEmail, subject, body, cc) {
         const params = new URLSearchParams();
@@ -376,7 +377,9 @@ ${userData.city}, ${userData.province} ${userData.postalCode}`;
             params.set('cc', cc);
         }
 
-        return `mailto:${encodeURIComponent(toEmail)}?${params.toString()}`;
+        // Replace + with %20 for proper mailto encoding
+        const queryString = params.toString().replace(/\+/g, '%20');
+        return `mailto:${encodeURIComponent(toEmail)}?${queryString}`;
     }
 
     /**
@@ -394,6 +397,7 @@ ${userData.city}, ${userData.province} ${userData.postalCode}`;
 
     /**
      * Generate Gmail compose URL
+     * On mobile, this opens the Gmail app if installed
      */
     function generateGmailLink(toEmail, subject, body, cc) {
         const params = new URLSearchParams();
@@ -406,7 +410,9 @@ ${userData.city}, ${userData.province} ${userData.postalCode}`;
         params.set('su', subject);
         params.set('body', body);
 
-        return `https://mail.google.com/mail/?${params.toString()}`;
+        // Replace + with %20 for consistency
+        const queryString = params.toString().replace(/\+/g, '%20');
+        return `https://mail.google.com/mail/?${queryString}`;
     }
 
     // ============================================
