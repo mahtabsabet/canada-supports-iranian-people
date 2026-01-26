@@ -396,23 +396,44 @@ ${userData.city}, ${userData.province} ${userData.postalCode}`;
     }
 
     /**
+     * Check if user is on a mobile device
+     */
+    function isMobile() {
+        return /Android|iPhone|iPad|iPod|webOS|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    }
+
+    /**
      * Generate Gmail compose URL
-     * On mobile, this opens the Gmail app if installed
+     * Uses Gmail app scheme on mobile, web URL on desktop
      */
     function generateGmailLink(toEmail, subject, body, cc) {
-        const params = new URLSearchParams();
-        params.set('view', 'cm');
-        params.set('fs', '1');
-        params.set('to', toEmail);
-        if (cc) {
-            params.set('cc', cc);
-        }
-        params.set('su', subject);
-        params.set('body', body);
+        if (isMobile()) {
+            // Gmail app URL scheme (works on iOS and Android)
+            const params = new URLSearchParams();
+            params.set('to', toEmail);
+            if (cc) {
+                params.set('cc', cc);
+            }
+            params.set('subject', subject);
+            params.set('body', body);
 
-        // Replace + with %20 for consistency
-        const queryString = params.toString().replace(/\+/g, '%20');
-        return `https://mail.google.com/mail/?${queryString}`;
+            const queryString = params.toString().replace(/\+/g, '%20');
+            return `googlegmail://co?${queryString}`;
+        } else {
+            // Desktop: use Gmail web compose
+            const params = new URLSearchParams();
+            params.set('view', 'cm');
+            params.set('fs', '1');
+            params.set('to', toEmail);
+            if (cc) {
+                params.set('cc', cc);
+            }
+            params.set('su', subject);
+            params.set('body', body);
+
+            const queryString = params.toString().replace(/\+/g, '%20');
+            return `https://mail.google.com/mail/?${queryString}`;
+        }
     }
 
     // ============================================
