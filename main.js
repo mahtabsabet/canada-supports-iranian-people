@@ -353,9 +353,9 @@
 
 I am writing as a constituent to encourage a clear, cross-partisan show of support for the people of Iran who continue to protest for basic rights and freedoms.
 
-Amnesty International and UN human rights experts have documented lethal violence against largely peaceful protesters, mass arrests, and enforced disappearances. Independent reporting indicates thousands may have been killed or injured, with internet shutdowns and reports of security forces targeting hospitals further obscuring the scale of abuses.
+Amnesty International and UN human rights experts have documented lethal violence against largely peaceful protesters. Independent reporting indicates tens of thousands may have been killed or injured, with internet shutdowns and reports of security forces targeting hospitals further obscuring the scale of abuses.
 
-These are serious human rights concerns, not partisan claims. A unified message from Canadian leaders would send a powerful signal of Canada's commitment to democratic values.
+These are serious human rights concerns. A unified message from Canadian leaders would send a powerful signal of Canada's commitment to democratic values.
 
 Thank you for your time and service.
 
