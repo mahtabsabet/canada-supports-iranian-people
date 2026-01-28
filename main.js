@@ -370,9 +370,12 @@ ${userData.city}, ${userData.province} ${userData.postalCode}`;
      * Note: mailto links need %20 for spaces, not + (which URLSearchParams uses)
      */
     function generateMailtoLink(toEmail, subject, body, cc) {
+        // Use \r\n for line breaks — some mail clients ignore bare \n
+        const mailBody = body.replace(/\r?\n/g, '\r\n');
+
         const params = new URLSearchParams();
         params.set('subject', subject);
-        params.set('body', body);
+        params.set('body', mailBody);
         if (cc) {
             params.set('cc', cc);
         }
