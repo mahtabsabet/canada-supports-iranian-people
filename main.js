@@ -330,11 +330,10 @@
 
             // Check for House of Commons indicators
             return (
-                office.includes('mp') ||
+                office === 'mp' ||
                 office.includes('member of parliament') ||
                 repSet.includes('house of commons') ||
-                repSet.includes('chambre des communes') ||
-                (office === '' && repSet.includes('canada'))
+                repSet.includes('chambre des communes')
             );
         });
 
