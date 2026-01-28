@@ -1,0 +1,7 @@
+{
+  "name": "canada-supports-iranian-people",
+  "private": true,
+  "scripts": {
+    "test": "node --test test/"
+  }
+}
