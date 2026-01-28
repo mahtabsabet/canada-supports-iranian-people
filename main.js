@@ -625,6 +625,18 @@ ${userData.city}, ${userData.province} ${userData.postalCode}`;
     // Initialization
     // ============================================
 
+    /**
+     * Track event with GoatCounter (if loaded)
+     */
+    function trackEvent(eventName) {
+        if (window.goatcounter && window.goatcounter.count) {
+            window.goatcounter.count({
+                path: eventName,
+                event: true
+            });
+        }
+    }
+
     function init() {
         // Hide Gmail button on mobile (mailto works better with app chooser)
         if (isMobile()) {
@@ -636,6 +648,17 @@ ${userData.city}, ${userData.province} ${userData.postalCode}`;
 
         // Copy button
         copyEmailBtn.addEventListener('click', handleCopyEmail);
+
+        // Track email button clicks
+        openEmailBtn.addEventListener('click', function() {
+            trackEvent('click-email-client');
+        });
+        openGmailBtn.addEventListener('click', function() {
+            trackEvent('click-gmail');
+        });
+        copyEmailBtn.addEventListener('click', function() {
+            trackEvent('click-copy-email');
+        });
 
         // Real-time validation clearing
         Object.values(fields).forEach(field => {
