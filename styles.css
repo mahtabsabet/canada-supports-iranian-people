@@ -449,39 +449,6 @@ textarea {
     flex-shrink: 0;
 }
 
-/* Landing Page */
-.landing {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 60vh;
-    text-align: center;
-}
-
-.landing-card {
-    background: var(--color-white);
-    padding: 2rem 1.5rem;
-    border-radius: var(--radius);
-    box-shadow: var(--shadow-md);
-    max-width: 480px;
-    width: 100%;
-}
-
-.landing-card h2 {
-    font-size: 1.25rem;
-    font-weight: 600;
-    color: var(--color-secondary);
-    margin: 0 0 0.75rem 0;
-}
-
-.landing-card p {
-    font-size: 1rem;
-    color: var(--color-text-light);
-    margin: 0;
-    line-height: 1.6;
-}
-
 /* Footer */
 footer {
     background-color: var(--color-secondary);
